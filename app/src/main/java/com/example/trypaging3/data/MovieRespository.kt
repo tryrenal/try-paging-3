@@ -6,7 +6,6 @@ import androidx.paging.PagingData
 import com.example.trypaging3.data.local.AppDatabase
 import com.example.trypaging3.data.local.entity.MovieEntity
 import com.example.trypaging3.data.network.api.ApiService
-import com.example.trypaging3.data.network.response.MovieResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

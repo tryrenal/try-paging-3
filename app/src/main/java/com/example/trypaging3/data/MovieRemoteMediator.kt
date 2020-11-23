@@ -24,23 +24,12 @@ class MovieRemoteMediator (
         loadType: LoadType,
         state: PagingState<Int, MovieEntity>
     ): MediatorResult {
-        val page = when(loadType) {
-            LoadType.REFRESH -> {
-                val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                remoteKeys?.nextKey?.minus(1) ?: STARTING_PAGE_INDEX
+        val page = when(val pageKeyData = getKeyPageData(loadType, state)){
+            is MediatorResult.Success -> {
+                return pageKeyData
             }
-            LoadType.APPEND -> {
-                val remoteKeys = getRemoteKeyForLastItem(state)
-                if (remoteKeys?.nextKey == null){
-                    throw InvalidObjectException("Remote Key Should Not Be null for $loadType")
-                }
-                remoteKeys.nextKey
-            }
-            LoadType.PREPEND -> {
-                val remoteKeys = getRemoteKeyForFirstItem(state)
-                    ?: throw InvalidObjectException("Remote key and the prevKey should not be null")
-                val prevKey = remoteKeys.prevKey ?: return MediatorResult.Success(endOfPaginationReached = true)
-                prevKey
+            else -> {
+                pageKeyData as Int
             }
         }
 
@@ -56,7 +45,7 @@ class MovieRemoteMediator (
                 val prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys = repos.map {
-                    MovieRemoteKeys(remoteId = it.id, nextKey = nextKey, prevKey = prevKey)
+                    MovieRemoteKeys(id = it.id, nextKey = nextKey, prevKey = prevKey)
                 }
                 database.movieKeyDao().insertAll(keys)
                 val entity = repos.map {
@@ -69,6 +58,26 @@ class MovieRemoteMediator (
             return MediatorResult.Error(e)
         }catch (e: HttpException){
             return MediatorResult.Error(e)
+        }
+    }
+
+    private suspend fun getKeyPageData(loadType: LoadType, state: PagingState<Int, MovieEntity>): Any? {
+        return when(loadType) {
+            LoadType.REFRESH -> {
+                val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
+                remoteKeys?.nextKey?.minus(1) ?: STARTING_PAGE_INDEX
+            }
+            LoadType.APPEND -> {
+                val remoteKeys = getRemoteKeyForLastItem(state)
+                    ?: throw InvalidObjectException("Remote key should not be null for $loadType")
+                remoteKeys.nextKey
+            }
+            LoadType.PREPEND -> {
+                val remoteKeys = getRemoteKeyForFirstItem(state)
+                    ?: throw InvalidObjectException("Remote key and the prevKey should not be null")
+                remoteKeys.prevKey ?: return MediatorResult.Success(endOfPaginationReached = true)
+                remoteKeys.prevKey
+            }
         }
     }
 

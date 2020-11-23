@@ -1,12 +1,9 @@
 package com.example.trypaging3.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.Injection
@@ -14,10 +11,15 @@ import com.example.trypaging3.R
 import com.example.trypaging3.ui.adapter.MovieAdapter
 import com.example.trypaging3.ui.adapter.MovieLoadStateAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MainViewModel
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     private fun getDataGame(){
         movieJob?.cancel()
         movieJob = lifecycleScope.launch {
-            viewModel.gameData().collectLatest { data ->
+            viewModel.gameData().distinctUntilChanged().collectLatest { data ->
                 movieAdapter.submitData(data)
             }
         }
