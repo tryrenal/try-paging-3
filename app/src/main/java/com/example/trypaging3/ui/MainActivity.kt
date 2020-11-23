@@ -31,32 +31,17 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv_game.layoutManager = layoutManager
 
-        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
+        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory(this@MainActivity))
             .get(MainViewModel::class.java)
 
         getDataGame()
         initAdapter()
-
-        retry_button_main.setOnClickListener { movieAdapter.retry() }
     }
 
     private fun initAdapter(){
         rv_game.adapter = movieAdapter.withLoadStateFooter(
             footer = MovieLoadStateAdapter { movieAdapter.retry() }
         )
-        movieAdapter.addLoadStateListener { loadState ->
-            rv_game.isVisible = loadState.source.refresh is LoadState.NotLoading
-            pb_main.isVisible = loadState.source.refresh is LoadState.Loading
-            retry_button_main.isVisible = loadState.source.refresh is LoadState.Error
-
-            val errorState = loadState.source.append as? LoadState.Error
-                ?: loadState.source.prepend as? LoadState.Error
-                ?: loadState.append as? LoadState.Error
-                ?: loadState.prepend as? LoadState.Error
-            errorState?.let {
-                Toast.makeText(this, "error ${it.error}", Toast.LENGTH_LONG).show()
-            }
-        }
     }
 
     private fun getDataGame(){

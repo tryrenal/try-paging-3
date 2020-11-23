@@ -1,4 +1,4 @@
-package com.example.trypaging3.data.local
+package com.example.trypaging3.data.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao

@@ -4,9 +4,10 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trypaging3.data.local.entity.MovieEntity
 import com.example.trypaging3.data.network.response.MovieResponse
 
-class MovieAdapter : PagingDataAdapter<MovieResponse, RecyclerView.ViewHolder>(DiffCallback){
+class MovieAdapter : PagingDataAdapter<MovieEntity, RecyclerView.ViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MovieViewHolder.create(parent)
@@ -20,12 +21,12 @@ class MovieAdapter : PagingDataAdapter<MovieResponse, RecyclerView.ViewHolder>(D
     }
 
     companion object{
-        private val DiffCallback = object : DiffUtil.ItemCallback<MovieResponse>(){
-            override fun areItemsTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<MovieEntity>(){
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
                 return oldItem == newItem
             }
         }
