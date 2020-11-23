@@ -12,7 +12,7 @@ interface ApiService  {
 
     @GET("movie/popular")
     suspend fun getPopularMovie(
-        @Query("api_key") apiKey : String,
+        @Query("api_key") apiKey : String? = "9764540cc75307bf937adec56fb19821",
         @Query("page") page: Int
     ) : RootResponse
 

@@ -1,12 +1,13 @@
 package com.example.trypaging3.ui.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.data.api.response.GameResponse
 
-class GameAdapter : ListAdapter<GameResponse, RecyclerView.ViewHolder>(DiffCallback){
+class GameAdapter : PagingDataAdapter<GameResponse, RecyclerView.ViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return GameViewHolder.create(parent)
