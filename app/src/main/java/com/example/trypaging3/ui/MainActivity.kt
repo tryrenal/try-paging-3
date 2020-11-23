@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.Injection
 import com.example.trypaging3.R
-import com.example.trypaging3.ui.adapter.GameAdapter
-import com.example.trypaging3.ui.adapter.GameLoadStateAdapter
+import com.example.trypaging3.ui.adapter.MovieAdapter
+import com.example.trypaging3.ui.adapter.MovieLoadStateAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -21,8 +21,8 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MainViewModel
-    private var gameAdapter = GameAdapter()
-    private var gameJob : Job? = null
+    private var movieAdapter = MovieAdapter()
+    private var movieJob : Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,14 +37,14 @@ class MainActivity : AppCompatActivity() {
         getDataGame()
         initAdapter()
 
-        retry_button_main.setOnClickListener { gameAdapter.retry() }
+        retry_button_main.setOnClickListener { movieAdapter.retry() }
     }
 
     private fun initAdapter(){
-        rv_game.adapter = gameAdapter.withLoadStateFooter(
-            footer = GameLoadStateAdapter { gameAdapter.retry() }
+        rv_game.adapter = movieAdapter.withLoadStateFooter(
+            footer = MovieLoadStateAdapter { movieAdapter.retry() }
         )
-        gameAdapter.addLoadStateListener { loadState ->
+        movieAdapter.addLoadStateListener { loadState ->
             rv_game.isVisible = loadState.source.refresh is LoadState.NotLoading
             pb_main.isVisible = loadState.source.refresh is LoadState.Loading
             retry_button_main.isVisible = loadState.source.refresh is LoadState.Error
@@ -60,10 +60,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDataGame(){
-        gameJob?.cancel()
-        gameJob = lifecycleScope.launch {
+        movieJob?.cancel()
+        movieJob = lifecycleScope.launch {
             viewModel.gameData().collectLatest { data ->
-                gameAdapter.submitData(data)
+                movieAdapter.submitData(data)
             }
         }
     }

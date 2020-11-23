@@ -2,7 +2,7 @@ package com.example.trypaging3.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GameResponse(
+data class MovieResponse(
     @field:SerializedName("title")
     val title: String,
     @field:SerializedName("id")
