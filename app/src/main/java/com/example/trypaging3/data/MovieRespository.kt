@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.trypaging3.data.api.ApiService
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.api.response.MovieResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -13,9 +13,9 @@ private const val NETWORK_PAGE_SIZE = 50
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class GameRespository(private val service: ApiService) {
+class MovieRespository(private val service: ApiService) {
 
-    fun getResultStream() : Flow<PagingData<GameResponse>> {
+    fun getResultStream() : Flow<PagingData<MovieResponse>> {
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,

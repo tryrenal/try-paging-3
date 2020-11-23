@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.Injection
 import com.example.trypaging3.R
-import com.example.trypaging3.ui.adapter.GameAdapter
+import com.example.trypaging3.ui.adapter.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MainViewModel
-    private var gameAdapter = GameAdapter()
+    private var gameAdapter = MovieAdapter()
     private var gameJob : Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,7 +2,7 @@ package com.example.trypaging3.data
 
 import androidx.paging.PagingSource
 import com.example.trypaging3.data.api.ApiService
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.api.response.MovieResponse
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -10,8 +10,8 @@ private const val STARTING_PAGE_INDEX = 1
 
 class GamePagingSource (
     private val service : ApiService
-) : PagingSource<Int, GameResponse>(){
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GameResponse> {
+) : PagingSource<Int, MovieResponse>(){
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
             val response = service.getPopularMovie(page = position)
