@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.R
 import kotlinx.android.synthetic.main.load_state_footer.view.*
 
-class GameLoadStateViewHolder(
+class MovieLoadStateViewHolder(
     view: View,
     retry : () -> Unit
 ) : RecyclerView.ViewHolder(view) {
@@ -29,10 +29,10 @@ class GameLoadStateViewHolder(
     }
 
     companion object {
-        fun create(parent: ViewGroup, retry: () -> Unit) : GameLoadStateViewHolder {
+        fun create(parent: ViewGroup, retry: () -> Unit) : MovieLoadStateViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.load_state_footer, parent, false)
-            return GameLoadStateViewHolder(view, retry)
+            return MovieLoadStateViewHolder(view, retry)
         }
     }
 }

@@ -4,28 +4,28 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.trypaging3.data.network.response.GameResponse
+import com.example.trypaging3.data.network.response.MovieResponse
 
-class GameAdapter : PagingDataAdapter<GameResponse, RecyclerView.ViewHolder>(DiffCallback){
+class MovieAdapter : PagingDataAdapter<MovieResponse, RecyclerView.ViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return GameViewHolder.create(parent)
+        return MovieViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val items = getItem(position)
         if (items != null){
-            (holder as GameViewHolder).bind(items)
+            (holder as MovieViewHolder).bind(items)
         }
     }
 
     companion object{
-        private val DiffCallback = object : DiffUtil.ItemCallback<GameResponse>(){
-            override fun areItemsTheSame(oldItem: GameResponse, newItem: GameResponse): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<MovieResponse>(){
+            override fun areItemsTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: GameResponse, newItem: GameResponse): Boolean {
+            override fun areContentsTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
                 return oldItem == newItem
             }
         }

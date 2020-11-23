@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.trypaging3.R
-import com.example.trypaging3.data.network.response.GameResponse
+import com.example.trypaging3.data.network.response.MovieResponse
 
-class GameViewHolder (view: View) : RecyclerView.ViewHolder(view){
+class MovieViewHolder (view: View) : RecyclerView.ViewHolder(view){
     private val image = view.findViewById<ImageView>(R.id.img_game)
     private val title = view.findViewById<TextView>(R.id.tv_title_game)
 
-    fun bind(data: GameResponse?){
+    fun bind(data: MovieResponse?){
         if (data != null){
             Glide.with(itemView.context)
                 .load(data.backdrop_path)
@@ -24,10 +24,10 @@ class GameViewHolder (view: View) : RecyclerView.ViewHolder(view){
     }
 
     companion object{
-        fun create(parent: ViewGroup): GameViewHolder {
+        fun create(parent: ViewGroup): MovieViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.layout_game_item, parent, false)
-            return GameViewHolder(view)
+            return MovieViewHolder(view)
         }
     }
 
