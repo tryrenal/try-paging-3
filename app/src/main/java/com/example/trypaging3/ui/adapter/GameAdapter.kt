@@ -3,9 +3,8 @@ package com.example.trypaging3.ui.adapter
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.network.response.GameResponse
 
 class GameAdapter : PagingDataAdapter<GameResponse, RecyclerView.ViewHolder>(DiffCallback){
 

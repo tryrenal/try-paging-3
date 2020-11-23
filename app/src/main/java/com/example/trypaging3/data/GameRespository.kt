@@ -3,8 +3,8 @@ package com.example.trypaging3.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.trypaging3.data.api.ApiService
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.network.api.ApiService
+import com.example.trypaging3.data.network.response.GameResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

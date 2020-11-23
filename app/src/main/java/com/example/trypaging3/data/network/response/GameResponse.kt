@@ -1,4 +1,4 @@
-package com.example.trypaging3.data.api.response
+package com.example.trypaging3.data.network.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -2,7 +2,7 @@ package com.example.trypaging3
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.trypaging3.data.GameRespository
-import com.example.trypaging3.data.api.ApiService
+import com.example.trypaging3.data.network.api.ApiService
 import com.example.trypaging3.ui.ViewModelFactory
 
 object Injection {

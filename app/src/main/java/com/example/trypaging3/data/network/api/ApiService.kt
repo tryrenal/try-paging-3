@@ -1,6 +1,6 @@
-package com.example.trypaging3.data.api
+package com.example.trypaging3.data.network.api
 
-import com.example.trypaging3.data.api.response.RootResponse
+import com.example.trypaging3.data.network.response.RootResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

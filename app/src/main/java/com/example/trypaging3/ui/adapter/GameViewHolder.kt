@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.trypaging3.R
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.network.response.GameResponse
 
 class GameViewHolder (view: View) : RecyclerView.ViewHolder(view){
     private val image = view.findViewById<ImageView>(R.id.img_game)

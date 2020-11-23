@@ -1,8 +1,8 @@
 package com.example.trypaging3.data
 
 import androidx.paging.PagingSource
-import com.example.trypaging3.data.api.ApiService
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.network.api.ApiService
+import com.example.trypaging3.data.network.response.GameResponse
 import retrofit2.HttpException
 import java.io.IOException
 
