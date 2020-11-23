@@ -1,7 +1,7 @@
 package com.example.trypaging3.ui
 
 import androidx.lifecycle.*
-import com.example.trypaging3.data.GameRespository
+import com.example.trypaging3.data.MovieRespository
 import com.example.trypaging3.data.api.ApiResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class MainViewModel (private val repository: GameRespository) : ViewModel(){
+class MainViewModel (private val repository: MovieRespository) : ViewModel(){
 
-    val gameResult : LiveData<ApiResponse> = liveData {
+    val movieResult : LiveData<ApiResponse> = liveData {
         val data = repository.getResultStream().asLiveData(Dispatchers.Main)
         emitSource(data)
     }

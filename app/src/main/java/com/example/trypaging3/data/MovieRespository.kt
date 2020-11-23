@@ -3,7 +3,7 @@ package com.example.trypaging3.data
 import android.util.Log
 import com.example.trypaging3.data.api.ApiResponse
 import com.example.trypaging3.data.api.ApiService
-import com.example.trypaging3.data.api.response.GameResponse
+import com.example.trypaging3.data.api.response.MovieResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -16,8 +16,8 @@ private const val MOVIE_STARTING_PAGE = 1
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class GameRespository(private val service: ApiService) {
-    private val inMemoryCache = mutableListOf<GameResponse>()
+class MovieRespository(private val service: ApiService) {
+    private val inMemoryCache = mutableListOf<MovieResponse>()
     private val apiResponse = ConflatedBroadcastChannel<ApiResponse>()
 
     private var lastRequestedPage =

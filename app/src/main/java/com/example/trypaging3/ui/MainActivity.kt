@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.Injection
 import com.example.trypaging3.R
 import com.example.trypaging3.data.api.ApiResponse
-import com.example.trypaging3.databinding.ActivityMainBinding
-import com.example.trypaging3.ui.adapter.GameAdapter
+import com.example.trypaging3.ui.adapter.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MainViewModel
-    private var gameAdapter = GameAdapter()
+    private var movieAdapter = MovieAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +31,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(){
-        rv_game.adapter = gameAdapter
-        viewModel.gameResult.observe(this){result ->
+        rv_game.adapter = movieAdapter
+        viewModel.movieResult.observe(this){result ->
             when(result){
                 is ApiResponse.Success -> {
-                    gameAdapter.submitList(result.data)
+                    movieAdapter.submitList(result.data)
                 }
                 is ApiResponse.Error -> {
 

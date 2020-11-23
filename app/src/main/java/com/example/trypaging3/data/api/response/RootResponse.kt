@@ -6,5 +6,5 @@ data class RootResponse(
     @field:SerializedName("page")
     val page: Int? = null,
     @field:SerializedName("results")
-    val result: List<GameResponse> = emptyList()
+    val result: List<MovieResponse> = emptyList()
 )
