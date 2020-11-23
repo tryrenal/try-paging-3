@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trypaging3.Injection
 import com.example.trypaging3.R
 import com.example.trypaging3.ui.adapter.GameAdapter
+import com.example.trypaging3.ui.adapter.GameLoadStateAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -30,12 +31,14 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
             .get(MainViewModel::class.java)
 
-        initAdapter()
+        getDataGame()
 
+        rv_game.adapter = gameAdapter.withLoadStateFooter(
+            footer = GameLoadStateAdapter { gameAdapter.retry() }
+        )
     }
 
-    private fun initAdapter(){
-        rv_game.adapter = gameAdapter
+    private fun getDataGame(){
         gameJob?.cancel()
         gameJob = lifecycleScope.launch {
             viewModel.gameData().collectLatest { data ->
