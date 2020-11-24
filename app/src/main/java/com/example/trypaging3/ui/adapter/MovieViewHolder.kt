@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.trypaging3.R
 import com.example.trypaging3.data.network.response.MovieResponse
+import com.example.trypaging3.utils.BASE_IMAGE
 
 class MovieViewHolder (view: View) : RecyclerView.ViewHolder(view){
     private val image = view.findViewById<ImageView>(R.id.img_game)
@@ -16,8 +17,9 @@ class MovieViewHolder (view: View) : RecyclerView.ViewHolder(view){
 
     fun bind(data: MovieResponse?){
         if (data != null){
+            val imageUrl = BASE_IMAGE + data.backdrop_path
             Glide.with(itemView.context)
-                .load(data.backdrop_path)
+                .load(imageUrl)
                 .into(image)
             title.text = data.title
         }
