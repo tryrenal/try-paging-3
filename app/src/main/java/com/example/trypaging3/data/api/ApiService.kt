@@ -2,6 +2,7 @@ package com.example.trypaging3.data.api
 
 import com.example.trypaging3.BuildConfig
 import com.example.trypaging3.data.api.response.RootResponse
+import com.example.trypaging3.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +19,6 @@ interface ApiService  {
     ) : RootResponse
 
     companion object{
-        private const val BASE_URL = "https://api.themoviedb.org/3/"
 
         fun create(): ApiService {
             val client = OkHttpClient.Builder()
