@@ -1,6 +1,6 @@
 package com.example.trypaging3.data
 
-import android.util.Log
+import com.example.trypaging3.BuildConfig
 import com.example.trypaging3.data.api.ApiResponse
 import com.example.trypaging3.data.api.ApiService
 import com.example.trypaging3.data.api.response.MovieResponse
@@ -48,8 +48,7 @@ class MovieRespository(private val service: ApiService) {
         isRequestInProgress = true
         var successful = false
         try {
-            val response = service.getPopularMovie("9764540cc75307bf937adec56fb19821", lastRequestedPage)
-            Log.i("dataMovie", response.result.toString())
+            val response = service.getPopularMovie(BuildConfig.APIkey, lastRequestedPage)
             val repos = response.result
             inMemoryCache.addAll(repos)
             apiResponse.offer(ApiResponse.Success(repos))
