@@ -1,5 +1,6 @@
 package com.example.trypaging3.data.api
 
+import com.example.trypaging3.BuildConfig
 import com.example.trypaging3.data.api.response.RootResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,7 +13,7 @@ interface ApiService  {
 
     @GET("movie/popular")
     suspend fun getPopularMovie(
-        @Query("api_key") apiKey : String? = "9764540cc75307bf937adec56fb19821",
+        @Query("api_key") apiKey : String? = BuildConfig.APIkey,
         @Query("page") page: Int
     ) : RootResponse
 
